@@ -20,9 +20,9 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
         with:
-          persist-credentials: false
+          #persist-credentials: false
           fetch-depth: 0
-          token: ${{ secrets.ACCESS_TOKEN }}
+          #token: ${{ secrets.ACCESS_TOKEN }}
       -
         name: Get the previous tag
         id: read_tag
@@ -50,7 +50,7 @@ jobs:
         name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.ACCESS_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           force: true
       -
         name: Login to Docker Hub
