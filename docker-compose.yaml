@@ -1,0 +1,73 @@
+version: '3'
+
+services:
+  mongodb:
+    image: "mongo:4.4.27-rc0"
+    restart: "unless-stopped"
+    ports:
+    - "2717:27017"
+    volumes:
+    - "appointment-db:/data/db"
+    networks:
+    - "db-doc"
+    - "db-app"
+
+  doc-cont:
+    image: "gillrafay/das-doctor-img:${DOC_TAG}"
+    restart: "on-failure"
+    depends_on:
+    - "mongodb"
+    environment:
+      HOST_URL: "mongodb"
+      DB_PORT: "27017"
+    ports:
+    - "9090:9090"
+    networks:
+    - "db-doc"
+    - "front-doc"
+
+  app-cont:
+    image: "gillrafay/das-appointment-img:${APP_TAG}"
+    restart: "on-failure"
+    depends_on:
+    - "mongodb"
+    environment:
+      HOST_URL: "mongodb"
+      DB_PORT: "27017"
+    ports:
+    - "7070:7070"
+    networks:
+    - "db-app"
+    - "front-app"
+
+  frontend-cont:
+    image: "gillrafay/das-frontend-img:${FRONTEND_TAG}"
+    restart: "on-failure"
+    depends_on:
+    - "doc-cont"
+    - "app-cont"
+    environment:
+      APPOINTMENTS_SERVICE_URL: "app-cont:7070"
+      DOCTORS_SERVICE_URL: "doc-cont:9090"
+    ports:
+    - "3000:3000"
+    networks:
+    - "front-doc"
+    - "front-app"
+
+networks:
+  front-app:
+    driver: bridge
+
+  front-doc:
+    driver: bridge
+
+  db-app:
+    driver: bridge
+
+  db-doc:
+    driver: bridge
+
+volumes:
+  appointment-db:
+
