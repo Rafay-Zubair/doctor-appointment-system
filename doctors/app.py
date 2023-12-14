@@ -4,14 +4,12 @@ import os
 
 app = Flask(__name__)
 
-
 # Connection with MongoDB
 db_client = MongoClient(os.environ.get('HOST_URL'), int(os.environ.get('DB_PORT')))
 # Database
 db = db_client.doc_appointment_system
 # Collection
 doc_collection = db.doctor
-
 
 if doc_collection.count_documents({}) == 0:
 	# When doctors collection is empty
@@ -34,14 +32,11 @@ def getDoctors():
 		d.pop("_id")
 	return jsonify(data)
 
-
-# Setting route to get a doctor by id
 @app.route('/doctor/<id>', methods=["GET"])
 def getDoctor(id):
 	data = doc_collection.find_one({'id':str(id)})
 	data.pop("_id")
 	return jsonify(data)
 
-# Creating flask server
 if __name__ == "__main__":
 	app.run(host="0.0.0.0",port=9090)
