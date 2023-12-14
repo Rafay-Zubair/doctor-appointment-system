@@ -3,7 +3,8 @@ name: "workflow for the doctor microservice"
 on:
   push:
     branches:
-    - main
+    - "main"
+    - "master"
     #paths:
     #- "./doctors/**"
 
