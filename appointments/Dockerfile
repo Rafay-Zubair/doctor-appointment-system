@@ -11,6 +11,7 @@ RUN pip install -r requirements.txt
 EXPOSE 7070
 
 ENV HOST_URL="mongodb"
+
 ENV DB_PORT="27017"
 
 COPY ./app.py ./
