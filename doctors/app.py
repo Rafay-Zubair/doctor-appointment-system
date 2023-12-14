@@ -14,8 +14,8 @@ doc_collection = db.doctor
 if doc_collection.count_documents({}) == 0:
 	# When doctors collection is empty
 	doctors = [
-		{ 'id': "1",'firstName': "Muhammad Ali", 'lastName': "Kahoot", 'speciality':"DevOps"  },
-		{ 'id': "2",'firstName': "Good", 'lastName': "Doctor",'speciality':"Test"  }
+		{ 'id': "1",'firstName': "Muhammad Ali", 'lastName': "Kahoot", 'speciality' : "DevOps"  },
+		{ 'id': "2",'firstName': "Good", 'lastName': "Doctor",'speciality' : "Test"  }
 	]	
 	for doctor in doctors:
 		doc_collection.insert_one(doctor)
