@@ -9,7 +9,7 @@ on:
 
   pull_request:
     paths:
-    - "./doctors/**"
+    - "doctors/**"
 
 jobs:
   build:
@@ -44,7 +44,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .env
-          git commit -m "Updated .env file. Auto-commit changes made by GitHub Actions workflow."
+          git commit -m "This commit Updates .env file(DOC_TAG). Auto-commit changes made by GitHub Actions workflow."
       - 
         name: Push changes
         uses: ad-m/github-push-action@master
