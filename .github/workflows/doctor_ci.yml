@@ -4,8 +4,7 @@ on:
   push:
     paths:
     - "doctors/**"
-    #branches:
-    #- "main"
+    branches:
     - "master"
 
   pull_request:
