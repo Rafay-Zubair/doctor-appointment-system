@@ -17,3 +17,4 @@ COPY ./app.js ./
 COPY ./public/* ./public/
 
 CMD ["npm", "start"]
+
