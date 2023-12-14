@@ -1,4 +1,3 @@
-# Importing Libraries
 from flask import Flask, jsonify, request
 from pymongo import MongoClient
 import os
@@ -39,5 +38,6 @@ def getDoctor(id):
 	data.pop("_id")
 	return jsonify(data)
 
+# Creating flask server
 if __name__ == "__main__":
 	app.run(host="0.0.0.0",port=9090)
