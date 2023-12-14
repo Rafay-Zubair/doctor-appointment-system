@@ -24,13 +24,13 @@ jobs:
         id: read_tag
         run: |
           export tag=$(grep "DOC_TAG=" .env | cut -d '=' -f2)
-          echo "::set-output tag=::$tag"
+          echo "tag=$tag" >> $GITHUB_OUTPUT
       -
         name: Update the tag
         id: update_tag
         run: |
           new_tag=$(semver bump minor ${{ steps.read_tag.outputs.tag }})
-          echo "::set-output new_tag=::$new_tag"
+          echo "new_tag=$new_tag" >> $GITHUB_OUTPUT
       -
         name: Update tag in the .env file
         run: |
