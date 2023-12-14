@@ -2,11 +2,11 @@ name: "workflow for the doctor microservice"
 
 on:
   push:
+    paths:
+    - "doctors/**"
     branches:
     - "main"
     - "master"
-    paths:
-    - "doctors/**.py"
 
   pull_request:
     paths:
