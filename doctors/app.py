@@ -12,6 +12,7 @@ db = db_client.doc_appointment_system
 # Collection
 doc_collection = db.doctor
 
+
 if doc_collection.count_documents({}) == 0:
 	# When doctors collection is empty
 	doctors = [
