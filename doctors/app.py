@@ -32,6 +32,8 @@ def getDoctors():
 		d.pop("_id")
 	return jsonify(data)
 
+
+
 @app.route('/doctor/<id>', methods=["GET"])
 def getDoctor(id):
 	data = doc_collection.find_one({'id':str(id)})
