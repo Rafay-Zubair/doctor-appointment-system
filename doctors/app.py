@@ -17,7 +17,6 @@ if doc_collection.count_documents({}) == 0:
 		{ 'id': "1",'firstName': "Muhammad Ali", 'lastName': "Kahoot", 'speciality':"DevOps"  },
 		{ 'id': "2",'firstName': "Good", 'lastName': "Doctor",'speciality':"Test"  }
 	]	
-	# Adding the doctors data to DB
 	for doctor in doctors:
 		doc_collection.insert_one(doctor)
 
