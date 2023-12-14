@@ -33,7 +33,7 @@ def getDoctors():
 	return jsonify(data)
 
 
-
+# Setting route to get a doctor by id
 @app.route('/doctor/<id>', methods=["GET"])
 def getDoctor(id):
 	data = doc_collection.find_one({'id':str(id)})
