@@ -6,7 +6,7 @@ on:
     - "main"
     - "master"
     paths:
-    - "./doctors/**"
+    - "./doctors/**.**"
 
   pull_request:
     paths:
