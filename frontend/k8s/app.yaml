@@ -22,7 +22,7 @@ spec:
             cpu: 1m
             memory: 50Mi
           limits:
-            cpu: 10m
+            cpu: 50m
             memory: 200Mi
         env:
         - name: DOCTORS_SERVICE_URL
