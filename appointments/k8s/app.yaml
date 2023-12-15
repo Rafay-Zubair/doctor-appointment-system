@@ -17,6 +17,13 @@ spec:
       containers:
       - name: app-cont
         image: gillrafay/das-appointment-img:1.0.0
+        resources:
+          requests:
+            cpu: 2m
+            memory: 50Mi
+          limits:
+            cpu: 10m
+            memory: 150Mi
         ports:
         - containerPort: 7070
           name: tcp
