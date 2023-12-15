@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: frontend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       tier: frontend
@@ -32,7 +32,7 @@ kind: Service
 metadata:
   name: frontend
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     tier: frontend
     app: das
