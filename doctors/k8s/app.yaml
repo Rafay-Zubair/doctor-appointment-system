@@ -17,6 +17,13 @@ spec:
       containers:
       - name: doc-cont
         image: gillrafay/das-doctor-img:1.0.0
+        resources:
+          requests:
+            cpu: 2m
+            memory: 50Mi
+          limits:
+            cpu: 10m
+            memory: 150Mi
         ports:
         - containerPort: 9090
           name: tcp
