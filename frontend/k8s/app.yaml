@@ -17,6 +17,13 @@ spec:
       containers:
       - name: frontend-cont
         image: gillrafay/das-frontend-img:1.0.0
+        resources:
+          requests:
+            cpu: 1m
+            memory: 50Mi
+          limits:
+            cpu: 10m
+            memory: 200Mi
         env:
         - name: DOCTORS_SERVICE_URL
           value: doctor-backend:9090
