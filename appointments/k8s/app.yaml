@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appointment-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: appointment-backend
+      app: das
+  template:
+    metadata:
+      labels:
+        tier: appointment-backend
+        app: das
+    spec:
+      containers:
+      - name: app-cont
+        image: gillrafay/das-appointment-img:1.0.0
+        ports:
+        - containerPort: 7070
+          name: tcp
+        env:
+        - name: HOST_URL
+          valueFrom:
+            configMapKeyRef:
+              name: mongodb-configmap
+              key: database_url
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: mongodb-configmap
+              key: database_port
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: appointment-backend
+spec:
+  selector:
+    tier: appointment-backend
+    app: das
+  ports:
+  - protocol: TCP
+    port: 7070
+    targetPort: 7070
+

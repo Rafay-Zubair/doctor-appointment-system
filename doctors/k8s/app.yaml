@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: doctor-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: doctor-backend
+      app: das
+  template:
+    metadata:
+      labels:
+        tier: doctor-backend
+        app: das
+    spec:
+      containers:
+      - name: doc-cont
+        image: gillrafay/das-doctor-img:1.0.0
+        ports:
+        - containerPort: 9090
+          name: tcp
+        env:
+        - name: HOST_URL
+          valueFrom:
+            configMapKeyRef:
+              name: mongodb-configmap
+              key: database_url
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: mongodb-configmap
+              key: database_port
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: doctor-backend
+spec:
+  selector:
+    tier: doctor-backend
+    app: das
+  ports:
+  - protocol: TCP
+    port: 9090
+    targetPort: 9090
+

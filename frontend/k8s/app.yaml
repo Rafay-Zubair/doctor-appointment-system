@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: frontend
+      app: das
+  template:
+    metadata:
+      labels:
+        tier: frontend
+        app: das
+    spec:
+      containers:
+      - name: frontend-cont
+        image: gillrafay/das-frontend-img:1.0.0
+        env:
+        - name: DOCTORS_SERVICE_URL
+          value: doctor-backend:9090
+        - name: APPOINTMENTS_SERVICE_URL
+          value: appointment-backend:7070
+        ports:
+        - containerPort: 3000
+          name: tcp
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  type: NodePort
+  selector:
+    tier: frontend
+    app: das
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+    nodePort: 31000
+
